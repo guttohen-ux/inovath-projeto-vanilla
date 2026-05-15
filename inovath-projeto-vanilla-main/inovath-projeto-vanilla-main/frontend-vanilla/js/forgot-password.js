@@ -40,8 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const btnSpan = sendBtn.querySelector('span');
       if (btnSpan) btnSpan.textContent = 'Enviando...';
       try {
-        const BASE_URL = `http://${window.location.hostname}:5000`;
-        const res = await fetch(`${BASE_URL}/api/users/forgot-password`, {
+        const res = await fetch('http://localhost:5000/api/users/forgot-password', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: currentEmail })
@@ -84,8 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       if (!currentEmail) return;
       try {
-        const BASE_URL = `http://${window.location.hostname}:5000`;
-        const res = await fetch(`${BASE_URL}/api/users/forgot-password`, {
+        const res = await fetch('http://localhost:5000/api/users/forgot-password', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: currentEmail })

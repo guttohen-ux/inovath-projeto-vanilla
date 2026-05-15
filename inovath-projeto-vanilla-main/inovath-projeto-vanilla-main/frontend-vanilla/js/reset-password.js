@@ -71,8 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       try {
-        const BASE_URL = `http://${window.location.hostname}:5000`;
-        const res = await fetch(`${BASE_URL}/api/users/reset-password`, {
+        const res = await fetch('http://localhost:5000/api/users/reset-password', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, codigo, nova_senha: novaSenha })

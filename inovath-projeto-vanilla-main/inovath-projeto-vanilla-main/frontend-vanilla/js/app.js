@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  const BASE_URL = `http://${window.location.hostname}:5000`;
+  const BASE_URL = 'http://localhost:5000';
   const userStr = localStorage.getItem('user');
 
   // ── Atualiza header conforme login ──

@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const BASE_URL = `http://${window.location.hostname}:5000`;
-  fetch(`${BASE_URL}/`)
+  fetch('http://localhost:5000/')
     .then(res => res.json())
     .then(data => {
       if (data.ranking && Array.isArray(data.ranking)) {

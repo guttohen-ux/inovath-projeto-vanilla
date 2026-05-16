@@ -1,0 +1,111 @@
+.ranking-container {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  padding: 2rem;
+  box-shadow: var(--shadow-lg);
+}
+
+.ranking-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.ranking-row.is-user {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: var(--radius-md);
+}
+
+.rank-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.rank-medal {
+  font-size: 1.5rem;
+  width: 30px;
+  text-align: center;
+  font-weight: bold;
+  color: #64748b;
+}
+
+.rank-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #e2e8f0;
+}
+
+.rank-avatar-initials {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border: 2px solid #e2e8f0;
+}
+
+.rank-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.rank-name {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.rank-level {
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.rank-pts {
+  font-weight: 700;
+  color: var(--primary-dark);
+  font-size: 1.1rem;
+}
+
+/* Anima��o de entrada */
+.page-header h1, .page-header p, .ranking-container {
+  opacity: 0;
+}
+
+@keyframes rankingSurgir {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-header h1 {
+  animation: rankingSurgir 0.8s ease-out forwards !important;
+}
+
+.page-header p {
+  animation: rankingSurgir 0.8s ease-out 0.2s forwards !important;
+}
+
+.ranking-container {
+  animation: rankingSurgir 1s ease-out 0.4s forwards !important;
+}
+
+.ranking-row:hover {
+  transform: scale(1.01);
+  transition: transform 0.2s ease;
+}

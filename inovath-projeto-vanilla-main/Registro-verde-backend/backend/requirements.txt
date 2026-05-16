@@ -1,0 +1,11 @@
+flask
+flask-cors
+python-dotenv
+google-auth
+PyJWT
+bcrypt
+flask-limiter
+email-validator
+werkzeug
+cryptography
+pyopenssl

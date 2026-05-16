@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Scanner IA - Registro Verde</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+    <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+    <style>
+        #video-container { position: relative; width: 100%; max-width: 500px; margin: auto; }
+        canvas { border-radius: 15px; width: 100% !important; height: auto !important; }
+        .scan-result { background: #f8fafc; padding: 20px; border-radius: 12px; margin-top: 15px; text-align: center; }
+        .btn-capture { background: #22c55e; color: white; border: none; padding: 15px; width: 100%; border-radius: 10px; font-weight: bold; margin-top: 10px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Scanner Guardião</h1>
+        <div id="video-container">
+            </div>
+        <div class="scan-result">
+            <h3 id="label">Aguardando câmera...</h3>
+            <p id="confidence"></p>
+            <div id="status-reciclavel"></div>
+        </div>
+        <button class="btn-capture" onclick="analisar()">Analisar Objeto</button>
+        <a href="../index.html" style="display: block; text-align: center; margin-top: 20px;">Voltar</a>
+    </div>
+
+    <script src="../js/scanner.js"></script>
+</body>
+</html>

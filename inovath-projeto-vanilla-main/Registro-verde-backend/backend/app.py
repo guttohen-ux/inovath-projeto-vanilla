@@ -58,14 +58,19 @@ def dashboard():
 
 if __name__ == "__main__":
     import socket
+    
     hostname = socket.gethostname()
     ip_local = socket.gethostbyname(hostname)
     
     print("\n" + "="*60)
-    print("🚀 Servidor Registro Verde iniciado!")
+    print("🚀 Servidor Registro Verde iniciado (HTTP)!")
     print("="*60)
-    print(f"🌐 Acesso Local: http://localhost:5000")
-    print(f"📱 Acesso no Celular (mesma Wi-Fi): http://{ip_local}:5000")
+    print(f"✅ Acesso Local: http://localhost:5000")
+    print(f"📱 Acesso Celular (mesma Wi-Fi): http://{ip_local}:5000")
     print("="*60 + "\n")
     
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(
+        host='0.0.0.0',
+        port=5000,
+        debug=True
+    )

@@ -8,3 +8,4 @@ flask-limiter
 email-validator
 werkzeug
 cryptography
+pyopenssl

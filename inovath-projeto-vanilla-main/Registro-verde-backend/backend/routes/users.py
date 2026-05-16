@@ -66,7 +66,7 @@ def reset_password():
     return jsonify({"msg": "Senha redefinida com sucesso!"}), 200
 
 
-def criar_usuario(nome, email, senha, telefone="", cidade=""):
+def criar_usuario(nome, email, senha, telefone="", cidade="", foto_url=None):
     return {
         "id": len(MOCK_USERS) + 1,
         "nome": nome,
@@ -76,6 +76,7 @@ def criar_usuario(nome, email, senha, telefone="", cidade=""):
         "cidade": cidade,
         "pontos": 0,
         "impacto_kg": 0,
+        "foto_url": foto_url or f"https://i.pravatar.cc/150?img={len(MOCK_USERS)+1}",
         "historico": [],
         "missoes": [
             {"label": "Recicle 10 itens", "reward": "+10 de Impacto", "progress": 0, "total": 10},
@@ -179,6 +180,7 @@ def get_profile(user_id):
         nome = data.get("nome", "").strip()
         telefone = data.get("telefone", "").strip()
         cidade = data.get("cidade", "").strip()
+        foto_url = data.get("foto_url", "").strip()
 
         if nome:
             user["nome"] = nome
@@ -186,6 +188,8 @@ def get_profile(user_id):
             user["telefone"] = telefone
         if "cidade" in data:
             user["cidade"] = cidade
+        if foto_url:
+            user["foto_url"] = foto_url
 
         return jsonify({
             "msg": "Perfil atualizado com sucesso!",
@@ -194,7 +198,8 @@ def get_profile(user_id):
                 "nome": user["nome"],
                 "email": user["email"],
                 "telefone": user.get("telefone", ""),
-                "cidade": user.get("cidade", "")
+                "cidade": user.get("cidade", ""),
+                "foto_url": user.get("foto_url", "")
             }
         }), 200
     user = next((u for u in MOCK_USERS if u["id"] == user_id), None)
@@ -215,6 +220,7 @@ def get_profile(user_id):
         "email": user["email"],
         "telefone": user.get("telefone", ""),
         "cidade": user.get("cidade", ""),
+        "foto_url": user.get("foto_url", ""),
         "impacto_kg": user["impacto_kg"],
         "nivel": nivel_obj["nome"],
         "historico": user["historico"][-5:],

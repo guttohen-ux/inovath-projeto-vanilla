@@ -28,6 +28,7 @@ MOCK_USERS = [
         "senha": "123456",
         "pontos": 0,
         "impacto_kg": 85,
+        "foto_url": "https://i.pravatar.cc/150?img=1",
         "historico": [
             {"material": "Garrafa PET", "pts": "+2 kg", "time": "Hoje, 10:30"},
             {"material": "Lata de alumínio", "pts": "+0.5 kg", "time": "Hoje, 09:15"},
@@ -49,6 +50,7 @@ MOCK_USERS = [
         "senha": "654321",
         "pontos": 0,
         "impacto_kg": 42,
+        "foto_url": "https://i.pravatar.cc/150?img=2",
         "historico": [
             {"material": "Papel", "pts": "+1 kg", "time": "Hoje, 08:00"},
             {"material": "Garrafa PET", "pts": "+1.5 kg", "time": "Ontem, 14:30"},
@@ -67,6 +69,7 @@ MOCK_USERS = [
         "senha": "abcdef",
         "pontos": 0,
         "impacto_kg": 210,
+        "foto_url": "https://i.pravatar.cc/150?img=3",
         "historico": [
             {"material": "Sucata metálica", "pts": "+10 kg", "time": "Hoje, 07:45"},
             {"material": "Papelão", "pts": "+5 kg", "time": "Ontem, 18:00"},

@@ -4,7 +4,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const apiUrl = process.env.API_URL || 'http://localhost:5000';
+const apiUrl = process.env.API_URL || '';
 const target = path.join(__dirname, 'frontend-vanilla', 'js', 'config.js');
 
 const content = [

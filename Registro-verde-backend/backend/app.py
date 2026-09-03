@@ -14,7 +14,13 @@ from routes.ia import ia_bp
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app)
+# Em produção (Render), restrinja as origens permitidas via FRONTEND_URL.
+# Se não definida, aceita qualquer origem (útil em desenvolvimento local).
+FRONTEND_URL = os.getenv("FRONTEND_URL", "")
+if FRONTEND_URL:
+    CORS(app, resources={r"/api/*": {"origins": FRONTEND_URL.split(",")}})
+else:
+    CORS(app)
 
 # Registro dos Blueprints
 app.register_blueprint(users_bp, url_prefix='/api/users')

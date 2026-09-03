@@ -1,10 +1,10 @@
-// Script de build para o Netlify.
+// Script de build para o Netlify e para o Render (Static Site).
 // Gera frontend-vanilla/js/config.js a partir da variável de ambiente API_URL.
 // Uso: API_URL=https://meu-backend.com node build-config.js
 const fs = require('fs');
 const path = require('path');
 
-const apiUrl = process.env.API_URL || '';
+const apiUrl = process.env.API_URL || 'http://localhost:5000';
 const target = path.join(__dirname, 'frontend-vanilla', 'js', 'config.js');
 
 const content = [

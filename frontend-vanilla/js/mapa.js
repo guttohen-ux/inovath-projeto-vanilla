@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const BASE_URL = 'http://localhost:5000';
+  const BASE_URL = (window.APP_CONFIG && window.APP_CONFIG.API_BASE_URL) || 'http://localhost:5000';
 
   const fullMapElement = document.getElementById('full-map');
   if (!fullMapElement) return;

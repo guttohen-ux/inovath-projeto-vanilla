@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  const BASE_URL = 'http://localhost:5000';
+  const BASE_URL = (window.APP_CONFIG && window.APP_CONFIG.API_BASE_URL) || 'http://localhost:5000';
   const userStr = localStorage.getItem('user');
 
   // ── Atualiza header conforme login ──
@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ── Ranking e Stats ──
-  fetch(`${BASE_URL}/`)
+  fetch(`${BASE_URL}/api/dashboard`)
     .then(res => res.json())
     .then(data => {
       // Atualiza Ranking

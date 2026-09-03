@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   lucide.createIcons();
 
+  const BASE_URL = (window.APP_CONFIG && window.APP_CONFIG.API_BASE_URL) || 'http://localhost:5000';
   const alertEl = document.getElementById('auth-alert');
   const stepRequest = document.getElementById('step-request');
   const stepSent = document.getElementById('step-sent');
@@ -40,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const btnSpan = sendBtn.querySelector('span');
       if (btnSpan) btnSpan.textContent = 'Enviando...';
       try {
-        const res = await fetch('http://localhost:5000/api/users/forgot-password', {
+        const res = await fetch(`${BASE_URL}/api/users/forgot-password`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: currentEmail })
@@ -83,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       if (!currentEmail) return;
       try {
-        const res = await fetch('http://localhost:5000/api/users/forgot-password', {
+        const res = await fetch(`${BASE_URL}/api/users/forgot-password`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: currentEmail })

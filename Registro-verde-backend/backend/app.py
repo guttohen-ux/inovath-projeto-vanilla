@@ -23,8 +23,7 @@ app.register_blueprint(recycling_bp, url_prefix='/api/recycling')
 app.register_blueprint(pontos_bp, url_prefix='/api/pontos')
 app.register_blueprint(ia_bp, url_prefix='/api')
 
-@app.route("/")
-def dashboard():
+def _dashboard_data():
     sorted_users = sorted(MOCK_USERS, key=lambda u: u["impacto_kg"], reverse=True)
     ranking_data = [
         {"user": u["nome"], "pontos": u["impacto_kg"]}
@@ -34,8 +33,9 @@ def dashboard():
     total_guardioes = len(MOCK_USERS)
     total_impacto = sum(u["impacto_kg"] for u in MOCK_USERS)
     total_ecopontos = len(ECOPONTOS)
+    total_scans = sum(len(u.get("historico", [])) for u in MOCK_USERS)
 
-    return jsonify({
+    return {
         "projeto": "Registro Verde",
         "status": "online",
         "modulos": {
@@ -44,33 +44,34 @@ def dashboard():
             "recycling": "ativo",
             "verde_points": "ativo",
             "ranking": "ativo",
-            "ia_scanner": "ativo" # Novo módulo listado
+            "ia_scanner": "ativo"
         },
         "ranking": ranking_data,
         "stats": {
             "guardioes": f"{total_guardioes}+",
             "impacto_kg": total_impacto,
             "residuos_ton": round(total_impacto / 1000, 2),
-            "ecopontos": total_ecopontos
+            "ecopontos": total_ecopontos,
+            "scans": f"{total_scans}"
         },
         "mensagem": "Sistema carregado com sucesso"
-    })
+    }
+
+
+@app.route("/")
+def dashboard():
+    return jsonify(_dashboard_data())
+
+
+# Rota usada na produção (Netlify), pois "/" serve a página inicial (index.html).
+# Todo o tráfego /api/* é encaminhado para a função Netlify.
+@app.route("/api/dashboard")
+def dashboard_api():
+    return jsonify(_dashboard_data())
 
 if __name__ == "__main__":
-    import socket
-    
-    hostname = socket.gethostname()
-    ip_local = socket.gethostbyname(hostname)
-    
-    print("\n" + "="*60)
-    print("🚀 Servidor Registro Verde iniciado (HTTP)!")
-    print("="*60)
-    print(f"✅ Acesso Local: http://localhost:5000")
-    print(f"📱 Acesso Celular (mesma Wi-Fi): http://{ip_local}:5000")
-    print("="*60 + "\n")
-    
-    app.run(
-        host='0.0.0.0',
-        port=5000,
-        debug=True
-    )
+    import os
+    debug = os.getenv("FLASK_ENV") == "development"
+    port = int(os.getenv("PORT", "5000"))
+    print("\nServidor Registro Verde iniciado em http://localhost:{}\n".format(port))
+    app.run(host="0.0.0.0", port=port, debug=debug)

@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btnText.textContent = 'Cadastrando...';
 
         try {
-          const res = await fetch('http://localhost:5000/api/users/register', {
+          const res = await fetch(`${BASE_URL}/api/users/register`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btnText.textContent = 'Entrando...';
 
         try {
-          const res = await fetch('http://localhost:5000/api/users/login', {
+          const res = await fetch(`${BASE_URL}/api/users/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, senha: password })
@@ -210,8 +210,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ── Global Stats para o Banner ──
-  const BASE_URL = 'http://localhost:5000';
-  fetch(`${BASE_URL}/`)
+  const BASE_URL = (window.APP_CONFIG && window.APP_CONFIG.API_BASE_URL) || 'http://localhost:5000';
+  fetch(`${BASE_URL}/api/dashboard`)
     .then(res => res.json())
     .then(data => {
       if (data.stats) {

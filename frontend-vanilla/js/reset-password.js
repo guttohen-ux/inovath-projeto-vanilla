@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   lucide.createIcons();
 
+  const BASE_URL = (window.APP_CONFIG && window.APP_CONFIG.API_BASE_URL) || 'http://localhost:5000';
   const urlParams = new URLSearchParams(window.location.search);
   const email = urlParams.get('email');
   const codigo = urlParams.get('codigo');
@@ -71,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       try {
-        const res = await fetch('http://localhost:5000/api/users/reset-password', {
+        const res = await fetch(`${BASE_URL}/api/users/reset-password`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, codigo, nova_senha: novaSenha })

@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   lucide.createIcons();
 
-  const BASE_URL = 'http://localhost:5000';
+  const BASE_URL = (window.APP_CONFIG && window.APP_CONFIG.API_BASE_URL) || 'http://localhost:5000';
   const userStr = localStorage.getItem('user');
   const alertEl = document.getElementById('profile-alert');
 
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (profileMissoes) profileMissoes.textContent = concluidas;
 
       // Ranking
-      fetch(`${BASE_URL}/`)
+      fetch(`${BASE_URL}/api/dashboard`)
         .then(r => r.json())
         .then(d => {
           const ranking = d.ranking || [];

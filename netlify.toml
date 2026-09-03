@@ -1,0 +1,18 @@
+[build]
+  command = "node build-config.js"
+  publish = "frontend-vanilla"
+
+[build.environment]
+  PYTHON_VERSION = "3.12"
+
+# Diretório das Netlify Functions (backend Flask)
+[functions]
+  directory = "netlify/functions"
+  # Inclui o backend Flask no pacote da função
+  included_files = ["Registro-verde-backend/backend/**"]
+
+# Encaminha todas as chamadas /api/* para a função Flask
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api"
+  status = 200

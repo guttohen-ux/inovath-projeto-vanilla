@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-  fetch('http://localhost:5000/')
+  const BASE_URL = (window.APP_CONFIG && window.APP_CONFIG.API_BASE_URL) || 'http://localhost:5000';
+  fetch(`${BASE_URL}/api/dashboard`)
     .then(res => res.json())
     .then(data => {
       if (data.ranking && Array.isArray(data.ranking)) {

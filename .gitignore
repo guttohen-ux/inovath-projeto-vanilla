@@ -8,6 +8,5 @@ venv/
 # Ambiente
 .env
 
-# Netlify / Node
+# Node
 node_modules/
-.netlify/
